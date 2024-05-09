@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+    <ul>
+        <li style="--clr:#00ade1;">
+            <a href="#" data-text="&nbsp;Home" class="letter-1">&nbsp;Viridiana</a>
+        </li>
+        <li style="--clr:#ff6493;">
+            <a href="#" data-text="&nbsp;Home" class="letter">&nbsp;Y</a>
+        </li>
+        <li style="--clr:#ffdd1c;">
+            <a href="#" data-text="&nbsp;Home" class="letter-2">&nbsp;Brandon</a>
+        </li>
+        <li style="--clr:#00dc82;">
+            <a href="#" data-text="&nbsp;Home">&nbsp;Desliza hacia</a>
+        </li>
+        <li style="--clr:#dc00d4;">
+            <a href="#" data-text="&nbsp;Home" class="letter-3">&nbsp;Abajo</a>
+        </li>
+    </ul>
+</section>
+    <div class="container">
+        <img src="viri1.jpeg" alt="" class="item">
+        <img src="viri2.jpeg" alt="" class="item">
+        <img src="viri3.jpeg" alt="" class="item">
+    </div>
+    <div class="texto">
+        <p class="paragraph">
+            Y te elegiría a ti; en cien vidas, en cien mundos, en cualquier versión de la realidad, te encontraría y te elegiría”. TE AMO
+        </p>
+    </div>
+    <script>
+
+        let paragraph = document.querySelector('.paragraph');
+        let spans = paragraph.textContent.trim().split(' ').map(word => `<span>${word}&nbsp;</span>`);
+        paragraph.innerHTML = spans.join('');
+
+        window.addEventListener('scroll', () => {
+            let scrollPosition = window.scrollY;
+            let paragraphTop = paragraph.getBoundingClientRect().top;
+
+            document.querySelectorAll('.paragraph span').forEach((span,index) => {
+                let spanTop = paragraphTop + (span.offsetHeight + 20) * index;
+                span.classList.toggle('reveal',scrollPosition > spanTop -20);
+            })
+        })
+
+let options = {
+            threshold: [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+        }
+
+        let callback = (entries,observer) => {
+            entries.forEach((entry)=> {
+                entry.target.style.scale = entry.intersectionRatio;
+            });
+        };
+
+        let observer = new IntersectionObserver(callback,options);
+
+        for(const target of document.querySelectorAll('.item')){
+            observer.observe(target);
+        }
+
+
+        let text = document.querySelectorAll('ul li a').forEach
+        (text => {
+            text.innerHTML = text.innerText.split('').map((letters, i) => `<span>${letters}</span>`).join('');
+            let spn = document.querySelectorAll('ul li a span').forEach(e => {
+                let duration = Math.random() * 5;
+                e.style.animationDuration = 0.25+duration+'s';
+                e.style.animationDelay = 0.25+duration+'s';
+            })
+        })
+
+
+
+    </script>
+</body>
+</html>
